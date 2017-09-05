@@ -330,5 +330,12 @@ classdef USTCDAC < handle
             obj.DispError(['USTCDAC:ConfigEEPROM:',obj.name],ErrorCode);
             obj.Block();
         end
+        function temp = GetDATemperature(obj,chip)
+            tt1 = obj.ReadAD9136(chip,hex2dec('132'));
+            tt2 = obj.ReadAD9136(chip,hex2dec('133'));
+            tt1 = double(mod(tt1,256));
+            tt2 = double(mod(tt2,256));
+            temp = 30+7.3*(tt2*256+tt1-39200)/1000.0;
+        end
     end
 end
