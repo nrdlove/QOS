@@ -16,12 +16,12 @@ T_DA = floor(sampleRateDA/demodeFreq); % unit sample point.
 T_AD = floor(sampleRateAD/demodeFreq); 
 omegaDA = 1/T_DA*2*pi;
 omegaAD = 1/T_AD*2*pi;
-% wavedata_1 = 2e4*sin(omegaDA*t)+32768;
-% wavedata_2 = 2e4*cos(omegaDA*t)+32768;
-wavedata_1 = ones(1,4000)*32768 - 10000;
-wavedata_1(mod(t,40)>20) = 32768 + 10000;
-wavedata_2 = ones(1,4000)*32768 + 10000;
-wavedata_2(mod(t,40)>20) = 32768 - 10000;
+wavedata_1 = 2e4*sin(omegaDA*t)+32768;
+wavedata_2 = 2e4*cos(omegaDA*t)+32768;
+% wavedata_1 = ones(1,4000)*32768 - 10000;
+% wavedata_1(mod(t,40)>20) = 32768 + 10000;
+% wavedata_2 = ones(1,4000)*32768 + 10000;
+% wavedata_2(mod(t,40)>20) = 32768 - 10000;
 
 delay = 0;
 demodulationwindow = t(delay+1:delay+windowLength);
@@ -61,8 +61,6 @@ a(k) = abs(db(k).s);
 p(k) = angle(db(k).s);
 temp(k) = db(k).temp;
 end
-a(a<5000) = [];
-p(p<-0.4) = [];
 subplot(3,1,1)
 plot(a);
 subplot(3,1,2)
