@@ -1,5 +1,6 @@
 %% import
 clear
+addpath('dlls');
 import qes.*
 import qes.hwdriver.sync.*
 QS = qSettings.GetInstance('C:\Users\fortu\Documents\GitHub\QOS\qos\settings');
@@ -51,7 +52,20 @@ for irepeat = 1:nrepeat
         errordata.Qt = Qt;
     end
 end
-
+%% multiADC test
+wavedata = 2e4*sin((1:2000)/2000*2*pi)+32768;
+for irepeat = 1:10
+    for ch = 1:8
+        ustcaddaObj.SendWave(ch,wavedata);
+    end
+    ret = ustcaddaObj.Run([1,2]);
+    if(ret == 1)
+        subplot(2,2,1);plot(ustcaddaObj.ad_List(1).I);
+        subplot(2,2,2);plot(ustcaddaObj.ad_List(1).Q);
+        subplot(2,2,3);plot(ustcaddaObj.ad_list(2).I);
+        subplot(2,2,4);plot(ustcaddaObj.ad_list(2).Q);
+    end
+end
 %% other
 a = zeros(1,nrepeat);
 p = zeros(1,nrepeat);
