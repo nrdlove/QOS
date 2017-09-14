@@ -209,7 +209,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
                 obj.ad_list(k).ad.SetSampleDepth(s.ad_boards{k}.records_para.sample_length);
                 obj.ad_list(k).ad.SetWindowStart(s.ad_boards{k}.demod_para.window_start);
                 obj.ad_list(k).ad.SetWindowWidth(s.ad_boards{k}.demod_para.window_width);
-                obj.ad_list(k).ad.SetDemoFre(s.ad_boards{k}.demod_para.demod_freq);
+                obj.ad_list(k).ad.SetDemoFre(s.ad_boards{k}.demod_para.demod_freq{1});
                 obj.ad_list(k).ad.SetGain(s.ad_boards{k}.channel_gain);
                 obj.ad_list(k).I = [];
                 obj.ad_list(k).Q = [];
@@ -367,7 +367,9 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
         end
         function SetDAChnlOutputDelay(obj,ch,delay)
             if(length(ch) == length(delay))
-                obj.da_channel_list(ch).delay = delay;
+                for k = 1:length(ch)
+                    obj.da_channel_list(ch(k)).delay = delay(k);
+                end
             else
                 error('ustcadda_v1:SetDAChnlOutputDelay','参数维度不同！');
             end
@@ -382,7 +384,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
             end
         end
         function SetDAChnlOutputOffset(obj,ch,offset)
-            if(lenth(ch) == length(offset))
+            if(length(ch) == length(offset))
                 for k = 1:length(ch)
                     ch_info = obj.da_channel_list(ch(k));
                     da_struct = obj.da_list(ch_info.index);
@@ -405,7 +407,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
         function SetDARuntimes(obj,daList,runResps)
             if(length(daList) == length(runResps))
                 for k = 1:daList
-                    obj.da_list(k).da.SetLoop(runResps,runResps,runResps,runResps);
+                    obj.da_list(k).da.SetLoop(runResps(k),runResps(k),runResps(k),runResps(k));
                 end
             else
                 error('ustcadda_v1:SetDARuntimes','参数维度不同！');
@@ -417,7 +419,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
                     obj.ad_list(adList(k)).ad.SetMode(isdemod(k));
                 end
             else
-                error('ustcadda_v1:SetADDemodFreq','参数维度不同！');
+                error('ustcadda_v1:SetADDemod','参数维度不同！');
             end
         end
         function SetADDemodFreq(obj,adList,freq)
@@ -459,7 +461,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
         function SetADSampleDepth(obj,adList,samp_depth)
             if(length(adList) == length(samp_depth))
                 for k = 1:length(adList)
-                    obj.ad_list(adList(k)).ad.SetWindowStart(samp_depth(k));
+                    obj.ad_list(adList(k)).ad.SetSampleDepth(samp_depth(k));
                 end
             else
                 error('ustcadda_v1:SetADSampleDepth','参数维度不同！');

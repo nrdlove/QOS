@@ -211,7 +211,7 @@ classdef USTCADC < handle
             end
             if(obj.isopen)
                 for k = 1:length(obj.demod_freq)
-                    step = obj.demod_freq{k}/1e9*65536;
+                    step = obj.demod_freq(k)/1e9*65536;
                     data = [0,22,floor(step/256),mod(step,256),0,0,0,0];
                     pdata = libpointer('uint8Ptr', data);
                     [ErrorCode,~] = calllib(obj.driver,'SendData',int32(obj.id),int32(8),pdata);

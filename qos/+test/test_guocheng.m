@@ -54,17 +54,30 @@ for irepeat = 1:nrepeat
 end
 %% multiADC test
 wavedata = 2e4*sin((1:2000)/2000*2*pi)+32768;
-for irepeat = 1:10
+ustcaddaObj.SetADDemod([1,2],[0,1]);
+ustcaddaObj.SetADDemodFreq([1,2],[10e6,10e6]);
+ustcaddaObj.SetADWindowStart([1,2],[0,0]);
+ustcaddaObj.SetADWindowWidth([1,2],[2000,2000]);
+ustcaddaObj.SetDAChnlOutputDelay(1:8,zeros(1,8));%设置da的通道输出延时，共8个通道
+ustcaddaObj.SetDABoardTrigDelay([1,2],[0,0]);%设置da板子的触发延时，共两个板子
+ustcaddaObj.SetDAChnlOutputOffset(1:8,zeros(1,8));%设置da通道输出偏置，共8个通道
+ustcaddaObj.SetDARuntimes([1,2],[2000,2000]);%设置da板子接收触发次数，共2个板子
+ustcaddaObj.SetDATrigCount([1 2],[2000,2000]);%设置da板子触发次数，共2个板子
+ustcaddaObj.SetADTrigCount([1 2],[2000,2000]);%设置ad接收触发次数，共2个ad
+ustcaddaObj.SetADSampleDepth([1 2],[4000,4000]);%设置ad板子的采样深度，共2个ad
+for irepeat = 1:8
+    tic
     for ch = 1:8
         ustcaddaObj.SendWave(ch,wavedata);
     end
     ret = ustcaddaObj.Run([1,2]);
-    if(ret == 1)
-        subplot(2,2,1);plot(ustcaddaObj.ad_List(1).I);
-        subplot(2,2,2);plot(ustcaddaObj.ad_List(1).Q);
-        subplot(2,2,3);plot(ustcaddaObj.ad_list(2).I);
-        subplot(2,2,4);plot(ustcaddaObj.ad_list(2).Q);
-    end
+%     if(ret == 1)
+%         subplot(2,2,1);plot(ustcaddaObj.ad_list(1).I);
+%         subplot(2,2,2);plot(ustcaddaObj.ad_list(1).Q);
+%         subplot(2,2,3);plot(ustcaddaObj.ad_list(2).I);
+%         subplot(2,2,4);plot(ustcaddaObj.ad_list(2).Q);
+%     end
+    disp(toc);
 end
 %% other
 a = zeros(1,nrepeat);

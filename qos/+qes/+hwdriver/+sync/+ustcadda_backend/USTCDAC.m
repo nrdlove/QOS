@@ -384,7 +384,7 @@ classdef USTCDAC < handle
                 % ErrorCode = calllib(obj.driver,'WriteInstruction',obj.id,hex2dec('00000702'),ch_new,data);
                 % obj.DispError(['USTCDAC:SetOffset:',obj.name],ErrorCode);
                 % obj.Block();
-                  obj.SetDefaultVolt(obj,channel,32768);
+                  obj.SetDefaultVolt(channel,32768);
             end
         end
         function SetTrigCorr(obj,data)
