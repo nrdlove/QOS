@@ -3,7 +3,7 @@
 	Author:GuoCheng
 	E-mail:fortune@mail.ustc.edu.cn
 	All right reserved @ GuoCheng.
-	Modified: 2017.6.30
+	Modified: 2017.9.15
 	Description: Export function.
 */
 
@@ -32,9 +32,9 @@
 
 
 /* Open a device and add it to device list. */
-DLLAPI int Open(UINT */*pID*/,char*/*ip*/,WORD/*port*/);
+DLLAPI int OpenDAC(UINT */*pID*/,char*/*ip*/,WORD/*port*/);
 /* Close the device and clear the data */
-DLLAPI int Close(UINT/*id*/);
+DLLAPI int CloseDAC(UINT/*id*/);
 /* Write a command to FPGA */
 DLLAPI int WriteInstruction(UINT/*id*/,UINT/*instructino*/,UINT/*para1*/,UINT/*para2*/);
 /* Write data to DDR4 */

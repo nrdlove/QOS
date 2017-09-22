@@ -19,7 +19,7 @@ DLLAPI int RecvData(int id, int len, int column, unsigned char *pDataI, unsigned
 /* 从ADC读回解模数据 */
 DLLAPI int RecvDemo(int id, int row, int* pData);
 /* 获取网卡的物理地址 */
-DLLAPI int GetMacAddress(int id,int isSrc,unsigned char* pMac);
+DLLAPI int GetMacAddress(int id,int isDst,unsigned char* pMac);
 /* 返回错误信息 */
 DLLAPI int GetErrorMsg(int id,int errorcode,char *strMsg);
 /* 返回网卡列表 */

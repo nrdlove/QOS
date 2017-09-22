@@ -80,14 +80,14 @@ classdef USTCDAC < handle
         function Open(obj)                % Connect to DAC board.
             obj.LoadLibrary();
             if ~obj.isopen
-                [ErrorCode,obj.id,~] = calllib(obj.driver,'Open',0,obj.ip,obj.port);
+                [ErrorCode,obj.id,~] = calllib(obj.driver,'OpenDAC',0,obj.ip,obj.port);
                 obj.DispError(['USTCDAC:Open:',obj.name],ErrorCode);
                 obj.isopen = 1; obj.status = 'open';
             end
         end
         function Close(obj)               % Disconnect to DAC board.
             if obj.isopen
-                ErrorCode = calllib(obj.driver,'Close',uint32(obj.id));
+                ErrorCode = calllib(obj.driver,'CloseDAC',uint32(obj.id));
                 obj.DispError(['USTCDAC:Close:',obj.name],ErrorCode);
                 obj.id = [];obj.status = 'closed';obj.isopen = false;
             end

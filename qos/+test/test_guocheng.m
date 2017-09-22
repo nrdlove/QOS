@@ -65,7 +65,7 @@ ustcaddaObj.SetDARuntimes([1,2],[2000,2000]);%设置da板子接收触发次数，共2个板子
 ustcaddaObj.SetDATrigCount([1 2],[2000,2000]);%设置da板子触发次数，共2个板子
 ustcaddaObj.SetADTrigCount([1 2],[2000,2000]);%设置ad接收触发次数，共2个ad
 ustcaddaObj.SetADSampleDepth([1 2],[4000,4000]);%设置ad板子的采样深度，共2个ad
-for irepeat = 1:8
+for irepeat = 1:40
     tic
     for ch = 1:8
         ustcaddaObj.SendWave(ch,wavedata);
@@ -77,7 +77,7 @@ for irepeat = 1:8
 %         subplot(2,2,3);plot(ustcaddaObj.ad_list(2).I);
 %         subplot(2,2,4);plot(ustcaddaObj.ad_list(2).Q);
 %     end
-    disp(toc);
+    disp([irepeat,toc]);
 end
 %% other
 a = zeros(1,nrepeat);
