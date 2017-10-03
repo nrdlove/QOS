@@ -396,7 +396,7 @@ classdef ustcadda_v1 < qes.hwdriver.icinterface_compatible % extends icinterface
         end
         function SetDATrigCount(obj,daList,trig_count)
             if(length(daList) == length(trig_count))
-                for k = 1:daList
+                for k = 1:length(daList)
                     obj.da_list(k).da.SetTrigCount(trig_count(k));
                     obj.da_list(k).da.SetLoop(trig_count(k),trig_count(k),trig_count(k),trig_count(k));
                 end

@@ -360,7 +360,7 @@ classdef USTCDAC < handle
         end
         function SetTrigDelay(obj,point)
             if(nargin == 2)
-                obj.sync_delay = point;
+                obj.trig_delay = point;
             end
             if(obj.isopen)
                 obj.SetTrigStart((obj.daTrigDelayOffset + obj.trig_delay)/8+1);
