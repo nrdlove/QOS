@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 09-Jul-2017 22:16:02 USTCDAC:Open:DAC_11 Error code:10060 --> Windows API failed: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
 09-Jul-2017 22:16:23 USTCDAC:Open:DAC_11 Error code:10060 --> Windows API failed: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
 09-Jul-2017 22:16:55 USTCDAC:Open:DAC_11 Error code:10060 --> Windows API failed: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
@@ -115,3 +116,7 @@
 31-Jul-2017 15:52:58 USTCDAC:Close:D_03 Error code:-469762046 --> USTCDACDRIVER API failed: WaitForSingleObject error.
 14-Aug-2017 18:31:59 USTCDAC:Open:D_03 Error code:10060 --> Windows API failed: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
 14-Aug-2017 18:45:26 USTCADC:SetMode Error code:1 --> USTCDACDRIVER API failed: Reveive data timeout, check the net status.
+=======
+13-Sep-2017 19:13:35 df:df Error code:-469762047 --> USTCDACDRIVER API failed: Receive data timeout, check the net status.
+14-Sep-2017 21:14:21 USTCDAC:Open:C05 Error code:10060 --> Windows API failed: 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+>>>>>>> pr/2
